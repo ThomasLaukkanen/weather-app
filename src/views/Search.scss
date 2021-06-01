@@ -1,0 +1,65 @@
+$blue: #63c7ff;
+
+.search {
+    background: $blue;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.leftLogo {
+    float: left;
+    margin: 10px;
+}
+.rightLogo {
+    float: right;
+    margin: 10px;
+}
+.rightLogo:hover {
+    cursor: pointer;
+}
+main {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+.inputCity {
+    background: rgba(0, 0, 0, 0.4);
+    color: aliceblue;
+    text-align: center;
+    min-height: 35px;
+    margin-top: 40vh;
+    resize: both;
+    overflow: auto;
+    width: 70%;
+    border-radius: 10em;
+    border-style: none;
+    font-size: 15px;
+    max-width: 288px;
+    height: 55px;
+}
+
+.btn {
+    position: absolute;
+    bottom: 0;
+    margin: 35px;
+    width: 100%;
+}
+button {
+    width: 80%;
+
+    border-radius: 10em;
+    border-style: none;
+    background: #fff;
+    font-size: 18px;
+    height: 53px;
+    max-width: 307px;
+    font-weight: 500;
+}
+button:hover {
+    cursor: pointer;
+}

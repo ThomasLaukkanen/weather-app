@@ -1,0 +1,47 @@
+$blue: #63c7ff;
+
+.sunny{
+    background: $blue;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+main{
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    flex-direction: column;
+    align-content: space-between;
+}
+img{
+margin-top: 40px;
+}
+p{
+    color: #ffffff;
+}
+.grader{
+    color: white;
+    font-size: 7em;
+    font-weight: 100;
+    text-align: center;
+}
+.city{
+    font-size: 1.5rem;
+}
+.time{
+
+}
+table{
+    position: absolute;
+    bottom: 20px;
+    min-width: 100%;
+    overflow-x: auto;
+    border-spacing: 0;
+    color: #ffffff;
+}
+th, td {
+    padding: 8px;
+    text-align: center;
+  }

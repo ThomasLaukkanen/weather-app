@@ -1,0 +1,25 @@
+.LoadingWrapper {
+    background: #63c7ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    position: relative;
+
+    h1 {
+        margin-top: 21px;
+        color: #fff;
+        font-size: 26px;
+        line-height: 32.28px;
+        letter-spacing: 2px;
+        font-family: 'Righteous';
+    }
+
+    .zocomIcon {
+        position: absolute;
+        bottom: 44px;
+        left: 0;
+        right: 0;
+    }
+}
