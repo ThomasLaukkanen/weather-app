@@ -4,6 +4,13 @@ $blue: #63c7ff;
   background: $blue;
   min-height: 100vh;
   color: #fff;
+
+  h1 {
+    text-transform: capitalize;
+  }
+  h2 {
+    font-size: 24px;
+  }
   main {
     align-items: center;
     display: flex;
@@ -14,14 +21,16 @@ $blue: #63c7ff;
   }
   .weatherImage {
     margin-top: 40px;
+    animation: weather 5s ease alternate infinite;
+    border-radius: 100%;
   }
   p {
     color: #ffffff;
   }
   .grader {
     color: white;
-    font-size: 7em;
-    font-weight: 100;
+    font-size: 144px;
+    font-weight: 300;
     text-align: center;
   }
   .city {
@@ -30,16 +39,37 @@ $blue: #63c7ff;
   .time {
   }
   table {
+    display: block;
     bottom: 20px;
-
+    font-size: 18px;
     border-spacing: 0;
     color: #ffffff;
     height: 400px;
-    width: 279px;
+    max-width: 479px;
+    overflow-y: scroll;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    & ::-webkit-scrollbar {
+      display: none;
+    }
   }
   th,
   td {
     padding: 8px;
     text-align: center;
+  }
+  tbody {
+    height: 500px;
+  }
+}
+
+@keyframes weather {
+  0% {
+    transform: translateY(-5px);
+    box-shadow: 10px 2px 100px yellow;
+  }
+  100% {
+    transform: translatey(5px);
+    box-shadow: 2px 10px 200px yellow;
   }
 }

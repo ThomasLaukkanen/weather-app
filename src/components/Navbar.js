@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
 import './Navbar.scss'
 import searchIcon from '../assets/searchIcon.svg'
+import { useHistory } from 'react-router-dom'
 function Navbar() {
+  const history = useHistory()
   return (
     <nav className="navBar">
       <svg
@@ -59,7 +61,12 @@ function Navbar() {
         </g>
       </svg>
 
-      <img src={searchIcon} alt="search icon" className="searchIcon" />
+      <img
+        src={searchIcon}
+        alt="search icon"
+        className="searchIcon"
+        onClick={() => history.push('/search')}
+      />
     </nav>
   )
 }
