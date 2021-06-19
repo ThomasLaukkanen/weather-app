@@ -1,16 +1,10 @@
-import { Link } from 'react-router-dom'
-import './Navbar.scss'
-import searchIcon from '../assets/searchIcon.svg'
-function Navbar() {
-  return (
-    <nav className="navBar">
-      <svg
+<svg
+        className="leftLogo"
         width="48"
         height="48"
         viewBox="0 0 48 48"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="navSnowflake"
       >
         <mask
           id="mask0"
@@ -58,10 +52,3 @@ function Navbar() {
           <circle cx="24" cy="24" r="21.6667" fill="white" />
         </g>
       </svg>
-
-      <img src={searchIcon} alt="search icon" className="searchIcon" />
-    </nav>
-  )
-}
-
-export default Navbar

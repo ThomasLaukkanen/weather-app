@@ -3,7 +3,7 @@ $blue: #63c7ff;
 .weatherWrapper {
   background: $blue;
   min-height: 100vh;
-
+  color: #fff;
   main {
     align-items: center;
     display: flex;
@@ -12,7 +12,7 @@ $blue: #63c7ff;
     flex-direction: column;
     align-content: space-between;
   }
-  img {
+  .weatherImage {
     margin-top: 40px;
   }
   p {
@@ -30,12 +30,12 @@ $blue: #63c7ff;
   .time {
   }
   table {
-    position: absolute;
     bottom: 20px;
-    min-width: 100%;
-    overflow-x: auto;
+
     border-spacing: 0;
     color: #ffffff;
+    height: 400px;
+    width: 279px;
   }
   th,
   td {

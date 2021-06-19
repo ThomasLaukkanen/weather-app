@@ -1,2 +1,12 @@
-.navSnowflake {
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  .searchIcon {
+    margin-top: 16px;
+    margin-right: 16px;
+  }
+  .navSnowflake {
+    margin-top: 16px;
+    margin-left: 16px;
+  }
 }
