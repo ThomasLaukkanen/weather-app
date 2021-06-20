@@ -23,6 +23,8 @@ $blue: #63c7ff;
     margin-top: 40px;
     animation: weather 5s ease alternate infinite;
     // border-radius: 100%;
+    max-width: 100%;
+    height: 300px;
   }
   p {
     color: #ffffff;
@@ -40,11 +42,10 @@ $blue: #63c7ff;
   }
   table {
     display: block;
-    bottom: 20px;
     font-size: 18px;
     border-spacing: 0;
     color: #ffffff;
-    height: 400px;
+    height: 300px;
     max-width: 479px;
     overflow-y: scroll;
     -ms-overflow-style: none; /* IE and Edge */

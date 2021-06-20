@@ -2,12 +2,12 @@
   display: flex;
   justify-content: space-between;
   .searchIcon {
-    margin-top: 10px;
-    margin-right: 10px;
+    margin: 10px;
     cursor: pointer;
+    height: 42px;
+    width: 42px;
   }
   .navSnowflake {
-    margin-top: 10px;
-    margin-left: 10px;
+    margin: 10px;
   }
 }

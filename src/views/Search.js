@@ -1,5 +1,5 @@
 import './Search.scss'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { setWeather } from '../actions/weatherAction'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -56,7 +56,7 @@ function Search() {
 
     if (!r.test(city)) {
       response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=sv`
       )
     } else {
       let cordinates = document.querySelector('.inputCity').value.split(' ')
@@ -76,22 +76,6 @@ function Search() {
   return (
     <div className="search">
       <div className="logo">
-        <svg
-          onClick={getCordinates}
-          className="rightLogo"
-          width="42"
-          height="42"
-          viewBox="0 0 42 42"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle cx="21" cy="21" r="21" fill="black" fill-opacity="0.1" />
-          <path
-            d="M20.8461 34.0003C20.7331 34.0003 20.6213 33.9777 20.5171 33.9338C20.413 33.8899 20.3187 33.8256 20.2398 33.7447C20.1609 33.6637 20.0991 33.5678 20.0579 33.4626C20.0167 33.3573 19.997 33.2449 20 33.1319V23.43C20 23.3178 19.9554 23.2101 19.8761 23.1308C19.7967 23.0514 19.6891 23.0069 19.5769 23.0069H9.86753C9.68955 23.009 9.51529 22.956 9.36862 22.8551C9.22196 22.7543 9.11007 22.6106 9.04832 22.4436C8.978 22.2446 8.98463 22.0264 9.06692 21.832C9.14922 21.6375 9.30122 21.4809 9.49309 21.3928L29.8013 12.0769C29.9582 12.005 30.1334 11.9828 30.3033 12.0133C30.4731 12.0438 30.6296 12.1255 30.7517 12.2474C30.8739 12.3694 30.9558 12.5257 30.9865 12.6956C31.0172 12.8654 30.9953 13.0406 30.9236 13.1976L21.6156 33.5058C21.5482 33.6533 21.4399 33.7783 21.3035 33.866C21.167 33.9537 21.0083 34.0003 20.8461 34.0003Z"
-            fill="white"
-          />
-        </svg>
-
         <svg
           className="leftLogo"
           width="48"
@@ -145,6 +129,21 @@ function Search() {
           <g mask="url(#mask0)">
             <circle cx="24" cy="24" r="21.6667" fill="white" />
           </g>
+        </svg>
+        <svg
+          onClick={getCordinates}
+          className="rightLogo"
+          width="42"
+          height="42"
+          viewBox="0 0 42 42"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle cx="21" cy="21" r="21" fill="black" fill-opacity="0.1" />
+          <path
+            d="M20.8461 34.0003C20.7331 34.0003 20.6213 33.9777 20.5171 33.9338C20.413 33.8899 20.3187 33.8256 20.2398 33.7447C20.1609 33.6637 20.0991 33.5678 20.0579 33.4626C20.0167 33.3573 19.997 33.2449 20 33.1319V23.43C20 23.3178 19.9554 23.2101 19.8761 23.1308C19.7967 23.0514 19.6891 23.0069 19.5769 23.0069H9.86753C9.68955 23.009 9.51529 22.956 9.36862 22.8551C9.22196 22.7543 9.11007 22.6106 9.04832 22.4436C8.978 22.2446 8.98463 22.0264 9.06692 21.832C9.14922 21.6375 9.30122 21.4809 9.49309 21.3928L29.8013 12.0769C29.9582 12.005 30.1334 11.9828 30.3033 12.0133C30.4731 12.0438 30.6296 12.1255 30.7517 12.2474C30.8739 12.3694 30.9558 12.5257 30.9865 12.6956C31.0172 12.8654 30.9953 13.0406 30.9236 13.1976L21.6156 33.5058C21.5482 33.6533 21.4399 33.7783 21.3035 33.866C21.167 33.9537 21.0083 34.0003 20.8461 34.0003Z"
+            fill="white"
+          />
         </svg>
       </div>
       <main>

@@ -7,12 +7,14 @@ $blue: #63c7ff;
   padding: 0;
   box-sizing: border-box;
 }
+.logo {
+  display: flex;
+  justify-content: space-between;
+}
 .leftLogo {
-  float: left;
   margin: 10px;
 }
 .rightLogo {
-  float: right;
   margin: 10px;
 }
 .rightLogo:hover {
