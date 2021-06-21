@@ -56,8 +56,7 @@ main {
   width: 100%;
 }
 button {
-  width: 80%;
-
+  padding: 16px;
   border-radius: 32px;
   border-style: none;
   background: #fff;
@@ -66,17 +65,39 @@ button {
   max-width: 307px;
   transition: all 0.2s ease-in;
   font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.3);
+  position: relative;
   &:hover {
-    background: rgb(240, 236, 27);
-
-    &::after {
-      content: '🥳 ';
-    }
-    &::before {
-      content: '🥳 ';
-    }
+    background: yellow;
+    transform: translateY(-2px);
+    // &::after {
+    //   content: '🥳 ';
+    // }
+    // &::before {
+    //   content: '🥳 ';
+    // }
+  }
+  &:active {
+    transform: translateY(3px);
   }
 }
-button:hover {
-  cursor: pointer;
+
+.lottie {
+  pointer-events: none;
+  width: 350px;
+  position: absolute;
+  bottom: 0px;
+  left: 40%;
+}
+
+// .hide {
+//   display: none;
+// }
+
+.clickHere {
+  width: 120px;
+  position: absolute;
+  top: 450px;
+  pointer-events: none;
 }

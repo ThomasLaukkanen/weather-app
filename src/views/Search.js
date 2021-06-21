@@ -1,10 +1,15 @@
 import './Search.scss'
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { setWeather } from '../actions/weatherAction'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import lottie from 'lottie-web'
+import gsap from 'gsap'
 
 function Search() {
+  let leftIcon = useRef(null)
+  let rightIcon = useRef(null)
+  console.log(leftIcon)
   const dispatch = useDispatch()
   const history = useHistory()
 
@@ -70,9 +75,45 @@ function Search() {
     const data = await response.json()
     console.log(data)
     dispatch(setWeather(data))
-    history.push('/weather/')
+    loadLottie()
+    setTimeout(() => history.push('/weather/'), 2000)
   }
 
+  function loadLottie() {
+    const svgContainer = document.getElementById('svg')
+    const animItem = lottie.loadAnimation({
+      wrapper: svgContainer,
+      animType: 'svg',
+      loop: false,
+      autoplay: false,
+      path: 'https://assets10.lottiefiles.com/datafiles/Tj3Hd1X74Once2j/data.json'
+    })
+    // svgContainer.classList.remove('hide')
+    animItem.goToAndPlay(0, true)
+    // animItem.addEventListener('complete', () => {
+    //   svgContainer.classList.add('hide')
+    // })
+  }
+  useEffect(() => {
+    function showClick() {
+      const ClickContainer = document.getElementById('clickMe')
+      const animItem2 = lottie.loadAnimation({
+        wrapper: ClickContainer,
+        animType: 'svg',
+        loop: false,
+        autoplay: false,
+        path: 'https://assets10.lottiefiles.com/packages/lf20_b0teeyo9.json'
+      })
+      animItem2.goToAndPlay(0, true)
+    }
+    showClick()
+    gsap.from(leftIcon, {
+      x: -100,
+      duration: 1,
+      rotation: 360,
+      ease: 'power2.out'
+    })
+  }, [])
   return (
     <div className="search">
       <div className="logo">
@@ -83,6 +124,7 @@ function Search() {
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          ref={(el) => (leftIcon = el)}
         >
           <mask
             id="mask0"
@@ -138,6 +180,7 @@ function Search() {
           viewBox="0 0 42 42"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
+          ref={(el) => (rightIcon = el)}
         >
           <circle cx="21" cy="21" r="21" fill="black" fill-opacity="0.1" />
           <path
@@ -154,9 +197,11 @@ function Search() {
           value={state.value}
           placeholder="Sök på tex.. Gothenburg 😍 "
         />
+        <div className="clickHere" id="clickMe" />
         <div id="gpsMessage"></div>
         <div className="btn">
           <button onClick={fetchWeather}>VAD ÄR DET FÖR VÄDER ?</button>
+          <div className="lottie" id="svg"></div>
         </div>
       </main>
     </div>
