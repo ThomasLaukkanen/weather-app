@@ -4,6 +4,7 @@ $blue: #63c7ff;
   background: $blue;
   min-height: 100vh;
   color: #fff;
+  padding: 8px;
 
   h1 {
     text-transform: capitalize;
@@ -23,8 +24,8 @@ $blue: #63c7ff;
     margin-top: 40px;
     animation: weather 5s ease alternate infinite;
     // border-radius: 100%;
-    max-width: 100%;
-    height: 300px;
+    max-width: 300px;
+    // height: 300px;
   }
   p {
     color: #ffffff;

@@ -5,15 +5,20 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import lottie from 'lottie-web'
 import gsap from 'gsap'
+import { CSSRulePlugin } from 'gsap/CSSRulePlugin'
+gsap.registerPlugin(CSSRulePlugin)
 
 function Search() {
   let leftIcon = useRef(null)
   let rightIcon = useRef(null)
-  console.log(leftIcon)
+  let inputField = useRef(null)
+  let button = useRef(null)
+
   const dispatch = useDispatch()
   const history = useHistory()
 
   function getCordinates() {
+    gsap.to(rightIcon, { rotate: 360, duration: 1, ease: ' steps( 12)' })
     let x = document.getElementById('gpsMessage')
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition)
@@ -51,32 +56,41 @@ function Search() {
   }
 
   async function fetchWeather() {
-    let apiKey = '768b3d2e108901bd5d3f1094802db7de'
-    let city = document.querySelector('.inputCity').value
+    if (inputField.value) {
+      let apiKey = '768b3d2e108901bd5d3f1094802db7de'
+      let city = document.querySelector('.inputCity').value
 
-    //REGULAR EXPRESSION
-    const r = /^[0-9]/
+      //REGULAR EXPRESSION
+      const r = /^[0-9]/
 
-    let response
+      let response
 
-    if (!r.test(city)) {
-      response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=sv`
-      )
-    } else {
-      let cordinates = document.querySelector('.inputCity').value.split(' ')
-      let lat = cordinates[0]
-      let lon = cordinates[1]
-      response = await fetch(
-        `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&lang=sv&exclude=minutely&units=metric&appid=${apiKey}`
-      )
+      if (!r.test(city)) {
+        response = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=sv`
+        )
+      } else {
+        let cordinates = document.querySelector('.inputCity').value.split(' ')
+        let lat = cordinates[0]
+        let lon = cordinates[1]
+        response = await fetch(
+          `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&lang=sv&exclude=minutely&units=metric&appid=${apiKey}`
+        )
+      }
+
+      const data = await response.json()
+      console.log(data)
+      dispatch(setWeather(data))
+      gsap.to(inputField, {
+        opacity: 0,
+        scale: 1000,
+        duration: 0.5,
+        ease: ' elastic. out( 1, 0.3)'
+      })
+      gsap.to(button, { opacity: 0, duration: 0.4, ease: 'power2.out' })
+      loadLottie()
+      setTimeout(() => history.push('/weather/'), 2000)
     }
-
-    const data = await response.json()
-    console.log(data)
-    dispatch(setWeather(data))
-    loadLottie()
-    setTimeout(() => history.push('/weather/'), 2000)
   }
 
   function loadLottie() {
@@ -107,15 +121,54 @@ function Search() {
       animItem2.goToAndPlay(0, true)
     }
     showClick()
-    gsap.from(leftIcon, {
-      x: -100,
-      duration: 1,
+
+    let tl = gsap.timeline({ defaults: {} })
+
+    tl.from(leftIcon, {
+      y: -200,
+      duration: 0.8,
       rotation: 360,
       ease: 'power2.out'
     })
+      .from(
+        rightIcon,
+        {
+          y: -200,
+          duration: 0.8,
+          rotation: 360,
+          opacity: 0,
+
+          ease: 'power2.out'
+        },
+        '-=0.6'
+      )
+      .from(
+        inputField,
+        {
+          opacity: 0,
+          duration: 0.7,
+          y: 50,
+          ease: 'power3.Out',
+          scaleX: 0
+        },
+        '-=0.7'
+      )
+      .from(
+        button,
+        {
+          y: 100,
+          opacity: 0,
+          ease: ' elastic. out( 1, 0.3)',
+          scaleY: 0,
+          duration: 1
+        },
+        '-=0.7'
+      )
+
+    setTimeout(() => inputField.focus(), 1600)
   }, [])
   return (
-    <div className="search">
+    <div className="searchWrapper">
       <div className="logo">
         <svg
           className="leftLogo"
@@ -190,18 +243,23 @@ function Search() {
         </svg>
       </div>
       <main>
-        <input
-          className="inputCity"
-          type="text"
-          onChange={handleChange}
-          value={state.value}
-          placeholder="Sök på tex.. Gothenburg 😍 "
-        />
-        <div className="clickHere" id="clickMe" />
+        <div className="relative">
+          <input
+            className="inputCity"
+            type="text"
+            onChange={handleChange}
+            value={state.value}
+            placeholder="Sök på tex.. Gothenburg 😍"
+            ref={(el) => (inputField = el)}
+          />
+          <div className="clickHere" id="clickMe" />
+        </div>
         <div id="gpsMessage"></div>
         <div className="btn">
-          <button onClick={fetchWeather}>VAD ÄR DET FÖR VÄDER ?</button>
-          <div className="lottie" id="svg"></div>
+          <button ref={(el) => (button = el)} onClick={fetchWeather}>
+            <span>VAD ÄR DET FÖR VÄDER ?</span>
+          </button>
+          <div className="lottie" id="svg" />
         </div>
       </main>
     </div>

@@ -1,15 +1,16 @@
 import './Loading.scss'
 import { Link, useHistory } from 'react-router-dom'
-import { useEffect } from 'react'
-
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
 function Loading() {
   const history = useHistory()
-
+  let logoText = useRef(null)
   function setTimer() {
     setTimeout(() => history.push('/search'), 3000)
   }
   useEffect(() => {
     setTimer()
+    gsap.from(logoText, { y: 100, opacity: 0, duration: 4, ease: 'power3.out' })
   }, [])
 
   return (
@@ -72,7 +73,7 @@ function Loading() {
           </svg>
         </Link>
 
-        <h1>VÄDER APP</h1>
+        <h1 ref={(el) => (logoText = el)}>VÄDER APP</h1>
         <div className="zocomIcon">
           <svg
             width="100"

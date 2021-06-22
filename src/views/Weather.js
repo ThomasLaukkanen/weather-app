@@ -1,7 +1,7 @@
 import './Weather.scss'
-
+import { useEffect, useRef } from 'react'
 import { useSelector } from 'react-redux'
-
+import gsap from 'gsap'
 import NavBar from '../components/Navbar'
 function Weather() {
   const weather = useSelector((state) => {
@@ -15,6 +15,13 @@ function Weather() {
     let time = utcString.slice(-12, -7)
     return time
   }
+
+  let weatherImage = useRef(null)
+
+  useEffect(() => {
+    let tl = gsap.timeline({ defaults: {} })
+    tl.from(weatherImage, { y: 299, duration: 3, ease: 'power3.out' })
+  }, [])
   return (
     <div className="weatherWrapper">
       <NavBar />
@@ -28,6 +35,7 @@ function Weather() {
             }
             alt="weather"
             className="weatherImage"
+            ref={(el) => (weatherImage = el)}
           />
 
           <h2 className="grader">{Math.round(weather.current.temp)}°</h2>
