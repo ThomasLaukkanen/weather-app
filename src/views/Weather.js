@@ -20,7 +20,7 @@ function Weather() {
 
   useEffect(() => {
     let tl = gsap.timeline({ defaults: {} })
-    tl.from(weatherImage, { y: 299, duration: 3, ease: 'power3.out' })
+    tl.from(weatherImage, { y: 299, duration: 6, ease: 'power3.out' })
   }, [])
   return (
     <div className="weatherWrapper">
@@ -87,7 +87,7 @@ function Weather() {
           {/* <p className="time">
             {showHour(weather.current.dt, weather.timezone_offset)}
           </p> */}
-          <table class>
+          <table>
             <tbody>
               <tr>
                 <td>

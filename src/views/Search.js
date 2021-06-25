@@ -9,10 +9,10 @@ import { CSSRulePlugin } from 'gsap/CSSRulePlugin'
 gsap.registerPlugin(CSSRulePlugin)
 
 function Search() {
-  let leftIcon = useRef(null)
-  let rightIcon = useRef(null)
-  let inputField = useRef(null)
-  let button = useRef(null)
+  let leftIcon = useRef()
+  let rightIcon = useRef()
+  let inputField = useRef()
+  let button = useRef()
 
   const dispatch = useDispatch()
   const history = useHistory()
@@ -33,7 +33,8 @@ function Search() {
     }
   }
   function handleClick() {
-    let cordinates = document.querySelector('.inputCity').value.split(' ')
+    // let cordinates = document.querySelector('.inputCity').value.split(' ')
+    let cordinates = inputField.value.split(' ')
     let lat = cordinates[0]
     let lon = cordinates[1]
 
@@ -58,7 +59,8 @@ function Search() {
   async function fetchWeather() {
     if (inputField.value) {
       let apiKey = '768b3d2e108901bd5d3f1094802db7de'
-      let city = document.querySelector('.inputCity').value
+      // let city = document.querySelector('.inputCity').value
+      let city = inputField.value
 
       //REGULAR EXPRESSION
       const r = /^[0-9]/
@@ -70,7 +72,9 @@ function Search() {
           `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=sv`
         )
       } else {
-        let cordinates = document.querySelector('.inputCity').value.split(' ')
+        // let cordinates = document.querySelector('.inputCity').value.split(' ')
+        let cordinates = inputField.value.split(' ')
+
         let lat = cordinates[0]
         let lon = cordinates[1]
         response = await fetch(
