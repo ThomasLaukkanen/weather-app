@@ -19,14 +19,10 @@ function Weather() {
   let weatherImage = useRef(null)
 
   useEffect(() => {
-    let tl = gsap.timeline({ defaults: {} })
-<<<<<<< HEAD
-    tl.from(weatherImage, { y: 299, duration: 6, ease: 'power3.out' })
-=======
-    if (weatherImage !== null) {
-      tl.from(weatherImage, { y: 299, duration: 3, ease: 'power3.out' })
-    }
->>>>>>> 565ddc7b1a13a7faab4bedd826965e2e453a039e
+    let tl = gsap.timeline()
+    tl.from(weatherImage, { x: 799, duration: 6, ease: 'power3.out' })
+    console.log(weatherImage)
+    console.log(tl)
   }, [])
   return (
     <div className="weatherWrapper">
@@ -85,6 +81,7 @@ function Weather() {
             src={require(`../assets/${weather.weather[0].icon}.png`).default}
             alt="weather"
             className="weatherImage"
+            ref={(el) => (weatherImage = el)}
           />
 
           <h2 className="grader">{Math.round(weather.main.temp)}°</h2>
