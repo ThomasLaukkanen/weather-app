@@ -40,6 +40,8 @@ $blue: #63c7ff;
     font-size: 1.5rem;
   }
   .time {
+    font-size: 1.4rem;
+    margin-bottom: 16px;
   }
   table {
     display: block;
@@ -65,7 +67,25 @@ $blue: #63c7ff;
     text-align: center;
   }
   tbody {
-    height: 500px;
+    // height: 500px;
+  }
+
+  .sunTimes {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    margin-bottom: 16px;
+    img {
+      // margin-right: 16px;
+      height: 32px;
+      fill: white;
+    }
+    div {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+    }
   }
 }
 

@@ -252,7 +252,6 @@ function Search() {
             className="inputCity"
             type="text"
             onChange={handleChange}
-            value={state.value}
             placeholder="Sök på tex.. Gothenburg 😍"
             ref={(el) => (inputField = el)}
             required
